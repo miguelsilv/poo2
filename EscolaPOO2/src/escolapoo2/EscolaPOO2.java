@@ -2,7 +2,11 @@ package escolapoo2;
 
 import controls.AlunoControle;
 import controls.ProfessorControle;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
 import models.Aluno;
 import models.Professor;
 
@@ -15,6 +19,19 @@ import models.Professor;
  * semestre salario = hora_aula * credito_semestre
  */
 public class EscolaPOO2 {
+
+    public final static void limparTela() {
+        try {
+            Robot pressbot = new Robot();
+            pressbot.keyPress(17); // CTRL. 
+            pressbot.keyPress(76); // L.
+            pressbot.keyRelease(17);
+            pressbot.keyRelease(76);
+            System.out.println("\n\n\n");
+        } catch (AWTException ex) {
+            System.out.println("Não foi possivel limpar a tela, desculpa a sujeira");
+        }
+    }
 
     public static void main(String[] args) {
         int op;
@@ -32,19 +49,21 @@ public class EscolaPOO2 {
                     + "(qualquer tecla) - Sair");
             System.out.print("Digite a opção: ");
             op = ler.nextInt();
-            System.out.println(op);
+
             String nome;
             int cred;
             switch (op) {
                 case 1: //cadastrar aluno
-                    System.out.print("Preencha os dados \nNome: ");
+                    System.out.print("\nPreencha os dados");
+                    System.out.print("\nNome: ");
                     nome = ler.next();
                     System.out.print("Créditos do semestre atual: ");
                     cred = ler.nextInt();
                     ac.add(new Aluno(ac.getMatricula(), nome, cred));
                     break;
                 case 2: //Cadastrar Prof
-                    System.out.print("Preencha os dados \nNome: ");
+                    System.out.print("Preencha os dados");
+                    System.out.print("\nNome: ");
                     nome = ler.next();
                     System.out.print("Créditos do semestre atual: ");
                     cred = ler.nextInt();
@@ -70,7 +89,7 @@ public class EscolaPOO2 {
                                 + "Nome:" + a.getNome() + "\n"
                                 + "Creditos do semestre: " + a.getQntCred() + "\n"
                                 + "Hora/Aula: " + a.getValorHora() + "\n"
-                                + "Salário: " + a.getSalario()+ "\n"
+                                + "Salário: " + a.getSalario() + "\n"
                                 + "___________________________ \n");
                     });
                     System.out.print("APERTE 'QUALQUER NÚMERO' PARA VOLTAR OU 0 PARA SAIR \n");
@@ -79,6 +98,7 @@ public class EscolaPOO2 {
                 default:
                     op = 0;
             }
+            limparTela();
         } while (op != 0);
     }
 
