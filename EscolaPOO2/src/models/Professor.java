@@ -15,13 +15,13 @@ public class Professor extends Pessoa {
 
     double valorHora;
 
-    public Professor(int matricula, String nome, int qntCred, double valorHora) {
-        super(matricula, nome, qntCred);
+    public Professor(int matricula, String nome, int qntCred, String sexo, double valorHora) {
+        super(matricula, nome, qntCred, sexo);
         this.valorHora = valorHora;
     }
 
     public Professor(Pessoa p, double valorHora) {
-        super(p.matricula, p.nome, p.qntCred);
+        super(p.matricula, p.nome, p.qntCred, p.sexo);
         this.valorHora = valorHora;
     }
 

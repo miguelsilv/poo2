@@ -1,14 +1,7 @@
 package escolapoo2;
 
-import controls.AlunoControle;
-import controls.ProfessorControle;
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import models.Aluno;
-import models.Professor;
 
 /**
  *
@@ -33,7 +26,12 @@ public class EscolaPOO2 {
         }
     }
 
+   
+
     public static void main(String[] args) {
+
+
+        /*
         int op;
         Scanner ler = new Scanner(System.in);
         AlunoControle ac = new AlunoControle();
@@ -59,7 +57,7 @@ public class EscolaPOO2 {
                     nome = ler.next();
                     System.out.print("Créditos do semestre atual: ");
                     cred = ler.nextInt();
-                    ac.add(new Aluno(ac.getMatricula(), nome, cred));
+                     ac.add(new Aluno(ac.getMatricula(), nome, cred));
                     break;
                 case 2: //Cadastrar Prof
                     System.out.print("Preencha os dados");
@@ -69,7 +67,7 @@ public class EscolaPOO2 {
                     cred = ler.nextInt();
                     System.out.print("Valor da hora/aula: ");
                     double horaAula = ler.nextDouble();
-                    pc.add(new Professor(ac.getMatricula(), nome, cred, horaAula));
+                      pc.add(new Professor(ac.getMatricula(), nome, cred, horaAula));
                     break;
                 case 3: //listar alunos
                     System.out.println("LISTA DE ALUNOS");
@@ -100,6 +98,7 @@ public class EscolaPOO2 {
             }
             limparTela();
         } while (op != 0);
+         */
     }
 
 }

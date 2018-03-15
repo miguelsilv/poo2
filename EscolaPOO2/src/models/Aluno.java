@@ -12,12 +12,12 @@ Os alunos possuem
  */
 public class Aluno extends Pessoa {
 
-    public Aluno(int matricula, String nome, int qntCred) {
-        super(matricula, nome, qntCred);
+    public Aluno(int matricula, String nome, int qntCred, String sexo) {
+        super(matricula, nome, qntCred, sexo);
     }
 
     public Aluno(Pessoa p) {
-        super(p.matricula, p.nome, p.qntCred);
+        super(p.matricula, p.nome, p.qntCred, p.sexo);
     }
 
 }

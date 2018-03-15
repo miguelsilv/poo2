@@ -1,6 +1,7 @@
 package controls;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import models.Professor;
 
 /**
@@ -39,5 +40,25 @@ public class ProfessorControle implements EscolaControle<Professor> {
     @Override
     public int getMatricula() {
         return this.matricula;
+    }
+
+    @Override
+    public DefaultTableModel atualizarTabela() {
+        String[] colunas = new String[]{"Matricula", "Aluno", "Sexo", "Idade"};
+
+        DefaultTableModel modeloTable = new DefaultTableModel(colunas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        while (modeloTable.getRowCount() > 0) {
+            modeloTable.removeRow(0);
+        }
+
+        for (Professor prof : profs) {
+            modeloTable.addRow(new Object[]{prof.getMatricula(), prof.getNome(), prof.getSexo(), prof.getQntCred()});
+        }
+        return modeloTable;
     }
 }

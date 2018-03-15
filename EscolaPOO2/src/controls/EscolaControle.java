@@ -1,6 +1,7 @@
 package controls;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,5 +17,7 @@ public interface EscolaControle<T> {
     public T get(int matricula);
 
     public int getMatricula();
+
+    public DefaultTableModel atualizarTabela();
 
 }
