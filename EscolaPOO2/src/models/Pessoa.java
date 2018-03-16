@@ -34,4 +34,8 @@ public class Pessoa {
         return sexo;
     }
 
+    public boolean isEmpty() {
+        return this.matricula == 0 || this.nome.equals("") || this.qntCred == 0 || this.sexo.equals("");
+    }
+
 }

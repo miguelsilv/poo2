@@ -7,6 +7,7 @@ package views;
 
 import controls.AlunoControle;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import models.Aluno;
 
 /**
@@ -18,16 +19,24 @@ public class Escola extends javax.swing.JFrame {
     /**
      * Creates new form Escola
      */
+    Component layout; //layout que será removido
+    AlunoControle ac;
+
     public Escola() {
         initComponents();
-        AlunoControle ac = new AlunoControle();
+        this.ac = new AlunoControle();
         ac.add(new Aluno(ac.getMatricula(), "João", 25, "Masculino"));
         ac.add(new Aluno(ac.getMatricula(), "Zé", 68, "Masculino"));
-
         ModeloListagem painel = new ModeloListagem("Alunos", ac.atualizarTabela());
-        this.setLayout(new BorderLayout());
-        this.add(painel, BorderLayout.CENTER);
+        mudarLayout(painel);
+    }
 
+    public final void mudarLayout(Component layout) {
+        if (this.layout != null) {
+            this.remove(this.layout);
+        }
+        this.setLayout(new BorderLayout());
+        this.add(layout, BorderLayout.CENTER);
     }
 
     /**
@@ -41,11 +50,25 @@ public class Escola extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        btnCadastrarAluno = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Cadastros");
+
+        btnCadastrarAluno.setText("Cadastrar Aluno");
+        btnCadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarAlunoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnCadastrarAluno);
+
+        jMenuItem2.setText("Cadastrar Professor");
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consultas");
@@ -66,6 +89,11 @@ public class Escola extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarAlunoActionPerformed
+        CadastroAluno ca = new CadastroAluno(this.ac, this);
+        mudarLayout(ca);
+    }//GEN-LAST:event_btnCadastrarAlunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,8 +133,10 @@ public class Escola extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnCadastrarAluno;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

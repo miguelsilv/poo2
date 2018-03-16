@@ -32,4 +32,10 @@ public class Professor extends Pessoa {
     public double getSalario() {
         return valorHora * qntCred;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return this.valorHora == 0 && super.isEmpty();
+    }
+
 }
