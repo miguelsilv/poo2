@@ -6,7 +6,6 @@
 package views;
 
 import controls.AlunoControle;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import models.Aluno;
 
@@ -17,17 +16,14 @@ import models.Aluno;
 public class CadastroAluno extends javax.swing.JPanel {
 
     AlunoControle ac;
-    Escola principal;
 
     /**
      * Creates new form CadastroAluno
      *
      * @param ac Controle aluno com todos os alunos já cadastrado
-     * @param principal
      */
-    public CadastroAluno(AlunoControle ac, Escola principal) {
+    public CadastroAluno(AlunoControle ac) {
         this.ac = ac;
-        this.principal = principal;
         initComponents();
     }
 
@@ -69,6 +65,11 @@ public class CadastroAluno extends javax.swing.JPanel {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -125,17 +126,28 @@ public class CadastroAluno extends javax.swing.JPanel {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Aluno a = new Aluno(this.ac.getMatricula(), this.txtNome.getText(), Integer.parseInt(this.txtCredito.getText().equals("") ? "0" : this.txtCredito.getText()), this.cbSexo.getSelectedItem().toString());
         if (!a.isEmpty()) {
-            this.principal = (Escola) principal;
             this.ac.add(a);
             JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!!");
-            this.principal.remove(this);
-            ModeloListagem painel = new ModeloListagem("Alunos", this.ac.atualizarTabela());
-            this.principal.mudarLayout(painel);
+
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Escola es = (Escola) this.getTopLevelAncestor();
+        es.remove(this);
+        es.repaint();
+        es.revalidate();
+        
+        
+        AlunoControle ac = new AlunoControle();
+        ac.add(new Aluno(ac.getMatricula(), "João", 25, "Masculino"));
+        ac.add(new Aluno(ac.getMatricula(), "Zé", 68, "Masculino"));
+        ModeloListagem painel = new ModeloListagem("Alunos", ac.atualizarTabela());
+        es.mudarLayout(painel);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

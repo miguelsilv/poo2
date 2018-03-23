@@ -5,13 +5,16 @@
  */
 package views;
 
+import controls.AlunoControle;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import models.Aluno;
 
 /**
  *
  * @author miguel
  */
-public class ModeloListagem<Tipo> extends javax.swing.JPanel {
+public class ModeloListagem extends javax.swing.JPanel {
 
     /**
      * Creates new form ModeloListagem
@@ -25,6 +28,8 @@ public class ModeloListagem<Tipo> extends javax.swing.JPanel {
         if (modeloTabela != null) {
             this.tbConteudo.setModel(modeloTabela);
         }
+        
+        this.setVisible(true);
     }
 
     /**
@@ -66,8 +71,18 @@ public class ModeloListagem<Tipo> extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tbConteudo);
 
         btnADD.setText("Adicionar");
+        btnADD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnADDActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Remover");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,6 +137,20 @@ public class ModeloListagem<Tipo> extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
+        Escola es = (Escola) this.getTopLevelAncestor();
+        es.remove(this);
+        es.repaint();
+        es.revalidate();
+        AlunoControle ac = new AlunoControle();
+        CadastroAluno ca = new CadastroAluno(ac);
+        es.mudarLayout(ca);
+    }//GEN-LAST:event_btnADDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
